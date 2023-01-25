@@ -1,4 +1,9 @@
 // query selector variables go here 👇
+const generateRandomButton = document.querySelector('.show-random');
+const createButton = document.querySelector('.show-form');
+const savedButton = document.querySelector('.show-saved');
+const backButton1 = document.querySelector('.show-main');
+const backButton2 = document.querySelector('.back-to-main');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -102,10 +107,47 @@ var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
+generateRandomButton.addEventListener('click', generateRandomPoster);
+createButton.addEventListener('click', showForm);
+savedButton.addEventListener('click', showSaved);
+backButton1.addEventListener('click', showMain);
+backButton2.addEventListener('click', backToMain);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
+
+function generateRandomPoster() {
+  const image = images[getRandomIndex(images)]
+  const title = titles[getRandomIndex(titles)]
+  const quote = quotes[getRandomIndex(quotes)]
+
+  document.querySelector('.poster-img').src = image;
+  document.querySelector('.poster-title').innerHTML = title;
+  document.querySelector('.poster-quote').innerHTML = quote;
+};
+
+function showForm() {
+  document.querySelector('.main-poster').classList.add('hidden');
+  document.querySelector('.poster-form.hidden').classList.remove('hidden');
+};
+
+function showMain() {
+  document.querySelector('.poster-form').classList.add('hidden');
+  document.querySelector('.main-poster.hidden').classList.remove('hidden');
+};
+
+function showSaved() {
+  document.querySelector('.main-poster').classList.add('hidden');
+  document.querySelector('.saved-posters.hidden').classList.remove('hidden');
+};
+
+function backToMain() {
+  document.querySelector('.saved-posters').classList.add('hidden');
+  document.querySelector('.main-poster.hidden').classList.remove('hidden');
+};
+
+
 
